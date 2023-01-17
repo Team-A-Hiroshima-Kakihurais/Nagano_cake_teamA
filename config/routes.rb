@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-<<<<<<< HEAD
   namespace :public do
     get 'deliveries/index'
     get 'deliveries/edit'
@@ -19,16 +18,8 @@ Rails.application.routes.draw do
   sessions: 'public/sessions'
 }
 
-  devise_for :users
-=======
-  
-  devise_for :customers,skip:[:password],controllers:{
-    registrations: "public/registrations",
-    sessions: "public/sessions"
-  }
-  devise_for :admins,skip:[:registrations, :password], controllers:{
-    sessions: "admin/sessions"
-  }
->>>>>>> origin/develop
+devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
+  sessions: "admin/sessions"
+}
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
