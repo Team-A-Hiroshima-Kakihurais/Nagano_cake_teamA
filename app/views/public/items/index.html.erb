@@ -1,0 +1,7 @@
+<h1>商品一覧</h1>
+<% @items.each do |item|%>
+<%#= image_tag item.image.add_default_image(200,100) %>
+<%= image_tag src="default.jpeg",size:"200x100"%>
+<%= item.name%>
+<%= item.price%>
+<% end %>
