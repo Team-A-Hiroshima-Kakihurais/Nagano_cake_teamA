@@ -2,7 +2,7 @@
     <div class='row'>
         <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
             <h2>商品一覧</h2>
-            <table class='table'>
+            <table class='table table-hover table-inverse'>
               <thead>
                 <tr>
                     <th>商品ID</th>
@@ -11,15 +11,20 @@
                     <th>ジャンル</th>
                     <th>ステータス</th>
                 </tr>
-              </thead>
-              <tbody>
+            </thead>
+            <tbody>
+            <!-- リファクタリングの為ブロックは{}を使って作成しています。 -->
+            <!-- ブロックはBookers等ではdoとendを使って作成していましたが波括弧でも作成できます。 -->
+                <% @item.each { |item| %>
                   <tr>
-                      <td>1</td>
-                      <td>洋梨のチーズタルト </td>
-                      <td>1,200 </td>
-                      <td>ケーキ</td>
-                      <td>販売中</td>
+                      <td><%= item.id %></td>
+                      <td><%= item.name %></td>
+                      <td><%= item.price %></td>
+                      <td><%= item.genre %></td>
+                      <td><%= item.is_active %></td>
                   </tr>
+                <% } %>
+                </tbody>
             </table>
         </div>
     </div>
