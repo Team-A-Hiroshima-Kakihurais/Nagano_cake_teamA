@@ -17,6 +17,18 @@ Rails.application.routes.draw do
   registrations: "public/registrations",
   sessions: 'public/sessions'
 }
+ 
+  scope module: :public do
+    get 'deliveries/index'
+    get 'deliveries/edit'
+    get 'customers/show'
+    get 'customers/edit'
+    root to: "homes#top"
+    get 'about' => 'homes#about', as: 'about'
+    resources :items, only: [:index, :show]
+    resources :cart_items, only: [:index, :create, :update, :destroy]
+    delete 'cart_items/delete_all', to: 'cart_items#destory_all', as: 'destory_all'
+  end 
 
 devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
