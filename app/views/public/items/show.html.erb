@@ -1,7 +1,7 @@
 <h2><%= @item.name%></h1>
 <%= @item.introduction %>
 <p>
-  <%= number_to_currency(@item.add_total_payment, unit:'￥', strip_insignificant_zeros: true) %>
+  <%= to_total_currnecy(@item.add_total_payment) %>
   <span>(税込)</span>
 </p>
-<%= render 'amount', cart:@cart%>
+<%= render 'public/cart_items/amount', cart:@cart %>
