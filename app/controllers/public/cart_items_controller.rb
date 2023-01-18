@@ -4,8 +4,12 @@ class Public::CartItemsController < ApplicationController
   end
   
   def create
-    # ポストメソッドが機能しているか確認用
-    redirect_to items_path
+    cart = current_customer.CartItem.new(cart_params)
+    if cart.save
+      redirect_to cart_items_path, notice:'商品を追加しました'
+    else
+      render 'items/show'
+    end
   end
   
   def update
@@ -16,4 +20,9 @@ class Public::CartItemsController < ApplicationController
   
   def destroy_all
   end
+  
+  private
+    def cart_params
+      params.require(:cart_item).parmit(:id, :amount)
+    end
 end

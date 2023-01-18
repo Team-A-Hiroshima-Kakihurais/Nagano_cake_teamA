@@ -1,10 +1,7 @@
 <h2><%= @item.name%></h1>
 <%= @item.introduction %>
 <p>
-  <%= number_to_currency(@item.add_total_payment(1.08), unit:'￥', strip_insignificant_zeros: true) %>
+  <%= number_to_currency(@item.add_total_payment, unit:'￥', strip_insignificant_zeros: true) %>
   <span>(税込)</span>
 </p>
-<%= form_with model:@cart, url: cart_items_path do |f| %>
-  <%= f.select :amount, [1,2,3,4,5],{include_blank: '個数選択'} %>
-  <%= f.submit 'カートに入れる'%>
-<% end %>
+<%= render 'amount', cart:@cart%>

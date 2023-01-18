@@ -1,2 +1,34 @@
-<h1>Public::CartItems#index</h1>
-<p>Find me in app/views/public/cart_items/index.html.erb</p>
+<div>
+  <h2>ショッピングカート</h2>
+  <%= link_to 'カートを空にする', destroy_all_path, method: :delete %>
+</div>
+<table class="table table-hover table-inverse">
+  <thead>
+    <tr>
+      <th>商品名</th>
+      <th>単価(税込)</th>
+      <th>数量</th>
+      <th>小計</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <%#= image_tag cart.image%>
+        <%= cart.name %>
+      </td>
+      <td><%= cart.price.add_total_payment %></td>
+      <td><%= render 'amount', cart:cart %></td>
+      <td><%= cart.price * cart.amount %></td>
+      <td><%= link_to '消去する', cart_item(cart.id) %></td>
+    </tr>
+  </tbody>
+</table>
+<div>
+  <%= link_to '買い物を続ける', items_path %>
+  <p>合計金額
+    <%= @carts.sum(:price) %>
+  </p>
+</div>
+<%= link_to '情報入力画面へ進む', %>

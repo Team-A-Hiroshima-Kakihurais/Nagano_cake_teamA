@@ -1,0 +1,4 @@
+<%= form_with model:cart, url: cart_items_path do |f| %>
+  <%= f.select :amount, [1,2,3,4,5],{include_blank: '個数選択'} %>
+  <%= f.submit 'カートに入れる'%>
+<% end %>
