@@ -21,11 +21,12 @@
                       <td><%= item.name %></td>
                       <td><%= item.price %></td>
                       <td><%= item.genre %></td>
-                      <td><%= item.is_active %></td>
+                      <td><%if !item.is_active %> <%= "販売中止中" %> <% else %> <%= "販売中" %> <% end %></td>
                   </tr>
                 <% } %>
                 </tbody>
             </table>
+            <%= paginate @item %>
         </div>
     </div>
 </div>

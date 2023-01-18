@@ -1,6 +1,6 @@
 class Admin::ItemsController < ApplicationController
     def index
-     @item = Item.all
+     @item = Item.page(params[:page])
     end
     
     def new
