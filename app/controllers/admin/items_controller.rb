@@ -1,10 +1,14 @@
 class Admin::ItemsController < ApplicationController
     def index
-     @item = Item.page(params[:page])
+        @item = Item.page(params[:page])
     end
     
     def new
-     @item = Item.new
+        @item = Item.new
+    end
+    
+    def show
+        @item = Item.find(params[:id])
     end
     
     def create
