@@ -4,4 +4,4 @@
   <%= to_total_currnecy(@item.add_total_payment) %>
   <span>(税込)</span>
 </p>
-<%= render 'public/cart_items/amount', cart:@cart %>
+<%= render 'public/cart_items/amount', cart:@cart, item:@item %>

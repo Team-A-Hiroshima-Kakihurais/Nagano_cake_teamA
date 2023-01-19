@@ -1,7 +1,7 @@
 class CreateItems < ActiveRecord::Migration[6.1]
   def change
     create_table :items do |t|
-      t.references :genre, foreign_key: {to_table: :genres}, null: false
+      t.references :genre, foreign_key: {to_table: :genres}
       t.string :name, null: false
       t.text :introduction, null: false
       t.integer :price, null: false

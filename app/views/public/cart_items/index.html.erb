@@ -1,6 +1,6 @@
 <div>
   <h2>ショッピングカート</h2>
-  <%= link_to 'カートを空にする', destory_all_path, method: :delete %>
+  <%= link_to 'カートを空にする', destroy_all_path, method: :delete %>
 </div>
 <table class="table table-hover table-inverse">
   <thead>
@@ -12,23 +12,31 @@
       <th></th>
     </tr>
   </thead>
+  <% if @carts.present?%>
   <tbody>
+      <% @carts.each do |cart| %>
     <tr>
       <td>
         <%#= image_tag cart.image%>
-        <%= cart.name %>
+        <%= cart.item.name %>
       </td>
-      <td><%= cart.add_total_payment %></td>
-      <td><%= render 'public/cart_items/amount', cart:cart %></td>
-      <td><%= cart.price * cart.amount %></td>
-      <td><%= link_to '消去する', cart_item(cart.id) %></td>
+      <td><%= cart.item.add_total_payment %></td>
+      <td><%= render 'public/cart_items/amount', cart:cart, item:cart.item %></td>
+      <td><%= cart.add_total_payment_all %></td>
+      <td><%= link_to '消去する', cart_item_path(cart.id), method: :delete %></td>
     </tr>
+      <% end %>
+  <% else %>
+  <tr>
+    <td>商品はありません</td>
+  </tr>
+  <% end %>
   </tbody>
 </table>
 <div>
   <%= link_to '買い物を続ける', items_path %>
   <p>合計金額
-    <%= @carts.sum(:price) %>
+    <%= @total %>
   </p>
 </div>
-<%#= link_to '情報入力画面へ進む', %>
+<%= link_to '情報入力画面へ進む', new_order_path %>
