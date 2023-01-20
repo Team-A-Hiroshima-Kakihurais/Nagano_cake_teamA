@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   scope module: :public do
     get 'deliveries/index'
     get 'deliveries/edit'
-    get 'customers/show'
-    get 'customers/edit'
+    get 'customers/my_page'  => 'customers#show'
+    get 'customers/information/edit' => 'customers#edit', as: 'edit_customer'
     root to: "homes#top"
     get 'about' => 'homes#about', as: 'about'
     resources :items, only: [:index, :show]
