@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   namespace :admin do
+    get 'orders/show'
+  end
+  namespace :admin do
     get 'genres/index'
     get 'genres/edit'
   end
@@ -48,6 +51,8 @@ namespace :admin do
   resources :items, only: [:index, :new, :create, :show, :edit, :update]
   resources :genres, only: [:index, :edit, :create, :update]
   resources :customers, only: [:index, :edit, :show, :update]
+  resources :orders, only: [:show, :update]
+  get '/' => 'homes#top'  
 end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
