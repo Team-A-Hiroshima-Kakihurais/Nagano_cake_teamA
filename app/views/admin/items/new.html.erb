@@ -16,7 +16,7 @@
               </div>
               <div class="form-group">
                 <%= f.label :genre %>
-              <% @genres.to_s { |genres| %>  <%= f.select :genre, [genres.name], {include_blank: '---'} %> <% } %>
+              <%= f.collection_select :id, Genre.all, :id, :name, {include_blank: '---'} %> <!-- このページを見て解決→https://qiita.com/takeda-no-nao/items/5b24f2caf371d6e310f3 -->
               </div>
               <div class="form-group">
                 <%= f.label :price %>
