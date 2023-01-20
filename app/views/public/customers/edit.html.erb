@@ -4,7 +4,7 @@
  </div>
  
  <div class="row">
-<%= form_with model: @customer, url: edit_customer_path do |f| %>
+<%= form_with model: @customer, url: update_customer_path(current_customer), method: :patch do |f| %>
   <%#= render "public/shared/error_messages", resource: resource %>
 
 <table>
