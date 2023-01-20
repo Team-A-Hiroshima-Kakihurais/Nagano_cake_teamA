@@ -1,7 +1,7 @@
 <h2>注文情報入力</h2>
 <%= form_with model: @order, url: confirm_path do |f| %>
   <p>お支払い方法</p>
-  <%= f.collection_radio_buttons( :payment_method, Order.payment_methods, :first, :first) do |b| %>
+  <%= f.collection_radio_buttons( :payment_method, Order.payment_methods_i18n, :first, :last) do |b| %>
   <%= b.label { b.radio_button + b.text } %><br/>
   <% end %>
 <div>

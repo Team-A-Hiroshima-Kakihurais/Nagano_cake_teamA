@@ -19,9 +19,4 @@ class Order < ApplicationRecord
     "#{self.post_code} #{self.address} "
   end
   
-  def add_item_list
-    self.order_items.map do |i|
-      i.item.name
-    end
-  end
 end
