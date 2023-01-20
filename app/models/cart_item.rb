@@ -6,5 +6,4 @@ class CartItem < ApplicationRecord
     tax = 1.08
     (self.item.price * tax).floor * self.amount
   end
-  
 end

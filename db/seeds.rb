@@ -7,13 +7,13 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Genre.create(
-  [{ name: 'genre1' }, 
+  [{ name: 'genre1' },
   { name: 'genre2' },
   { name: 'genre3' }
   ])
-  
+
 Item.create(
-  [{ genre_id: 1,name: 'item1', introduction:'test1', price: 100 }, 
+  [{ genre_id: 1,name: 'item1', introduction:'test1', price: 100 },
   { genre_id: 2,name: 'item2', introduction:'test2', price: 200 },
   { genre_id: 3,name: 'item3', introduction:'test3', price: 300 },
   { genre_id: 3,name: 'item4', introduction:'test4', price: 500 },
@@ -29,7 +29,7 @@ Item.create(
   post_code: '7654321',
   address: '福岡県福岡市地先',
   name: '鈴木次郎'},
-  {customer_id: 2,
+  {customer_id: 1,
   post_code: '9870987',
   address: '大阪府大阪市地先',
   name: '望月三郎'}
