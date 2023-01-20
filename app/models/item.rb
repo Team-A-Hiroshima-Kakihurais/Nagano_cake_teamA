@@ -1,6 +1,8 @@
 class Item < ApplicationRecord
   # 各モデルとの関係
   has_one_attached :image
+  has_many :carts, dependent: :destroy
+  has_many :order_items, dependent: :destroy
   
   #アイテムはジャンルに属する(genre:item = 1:N)
   belongs_to :genre

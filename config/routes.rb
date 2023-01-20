@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   registrations: "public/registrations",
   sessions: 'public/sessions'
 }
- 
+
   scope module: :public do
     get 'deliveries/new'
     post 'deliveries' => 'deliveries#create' 
@@ -39,9 +39,13 @@ Rails.application.routes.draw do
     root to: "homes#top"
     get 'about' => 'homes#about', as: 'about'
     resources :items, only: [:index, :show]
+    delete 'cart_items/destroy_all', to: 'cart_items#destroy_all', as: 'destroy_all'
     resources :cart_items, only: [:index, :create, :update, :destroy]
-    delete 'cart_items/delete_all', to: 'cart_items#destory_all', as: 'destory_all'
-  end 
+    get 'orders/complete', to: 'orders#complete', as: 'complete'
+    post 'orders/comfirm', to: 'orders#confirm', as: 'confirm'
+    resources :orders, only: [:index, :show, :create, :new]
+  end
+
 
 devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
