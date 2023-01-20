@@ -21,6 +21,7 @@
               <thead>
                 <tr>
                     <th>ジャンル</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -29,6 +30,7 @@
                 <% @genres.each { |genre| %>
                 <tr>
                     <td><%= genre.name %></td>
+                    <td><%= link_to "編集する", edit_admin_genre_path(genre.id) %></td>
                 </tr>
                 <% } %>
             </tbody>
