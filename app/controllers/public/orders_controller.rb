@@ -2,14 +2,17 @@ class Public::OrdersController < ApplicationController
   def new
     @order = Order.new
     @deliveries = Delivery.all.map do |delivery|
-      "〒#{delivery.post_code} #{delivery.address} #{delivery.name}"
+      [
+        delivery.id,
+        "〒#{delivery.post_code} #{delivery.address} #{delivery.name}"
+      ]
     end
   end
 
   def confirm
     @carts = current_customer.cart_items
     @order = Order.new(order_params)
-    
+    select_destination(params[:order][:address_option])
   end
 
   def complete
@@ -20,14 +23,32 @@ class Public::OrdersController < ApplicationController
 
   def show
   end
-  
+
   private
-    def select_full_address(option)
+    def order_params
+      params.require(:order).permit(
+        :payment_method,
+        :option,
+        :address_id,
+        :other_post_code,
+        :other_address,
+        :other_name)
+    end
+    def select_destination(option)
       case option
+        when '0'
+          @order.post_code = current_customer.post_code
+          @order.address = current_customer.address
+          @order.name = current_customer.name
         when '1'
-          @order.address = current_customer.add_delivery_address + current_customer.add_full_name
+          del = current_customer.deliveries.find(params[:address_id])
+          @order.post_code = del.post_code
+          @order.address = del.address
+          @order.name = del.name
         when '2'
-          @order.address = params[:address]
+          @order.post_code = params[:order][:other_post_code]
+          @order.address = params[:order][:other_address]
+          @order.name = params[:order][:other_name]
       end
     end
 end

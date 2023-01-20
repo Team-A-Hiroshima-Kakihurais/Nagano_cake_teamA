@@ -5,15 +5,33 @@
   <%= b.label { b.radio_button + b.text } %><br/>
   <% end %>
 <div>
-  <%= f.radio_button :address_option, 0, checked: "checked" %>
-  <%= f.label :address_option_0, "ご自身の住所" %><br/>
+  <%= f.radio_button :option, 0, checked: "checked" %>
+  <%= f.label :option_0, "ご自身の住所" %><br/>
   <%= current_customer.add_delivery_address %><br/>
   <%= current_customer.add_full_name %>
 </div>
 <div>
-  <%= f.radio_button :address_option, 1 %>
-  <%= f.label :address_option_1, "登録済住所から選択" %><br>
-  <%= f.select :address, @deliveries, {}, {} %>
+  <%= f.radio_button :option, 1 %>
+  <%= f.label :option_1, "登録済住所から選択" %><br>
+  <%= f.collection_select :address_id, @deliveries, :first, :last,{include_blank:'選択してください'} %>
+</div>
+<div>
+  <div>
+    <%= f.radio_button :option, 2 %>
+    <%= f.label :option_2, "新しいお届け先" %>
+  </div>
+  <di>
+    <%= f.label :other_post_code, "郵便番号(ハイフンなし)" %>
+    <%= f.text_field :other_post_code %>
+  </di>
+  <div>
+    <%= f.label :other_address, "住所" %>
+    <%= f.text_field :other_address %>
+  </div>
+  <div>
+    <%= f.label :other_name, "宛名" %>
+    <%= f.text_field :other_name %>
+  </div>
 </div>
 <%= f.submit '確認画面へ進む' %>
 <% end %>

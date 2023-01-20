@@ -30,7 +30,7 @@ Item.create(
   address: '福岡県福岡市地先',
   name: '鈴木次郎'},
   {customer_id: 2,
-  post_code: '7654321',
+  post_code: '9870987',
   address: '大阪府大阪市地先',
-  name: '鈴木三郎'}
+  name: '望月三郎'}
   ])
