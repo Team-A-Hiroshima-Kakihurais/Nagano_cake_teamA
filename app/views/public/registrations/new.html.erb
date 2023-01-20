@@ -1,25 +1,37 @@
-<h2><span class="bg-secondary">新規会員登録</span></h2>
-
+<div class="container px-5 px-sm-0">
+ <div class="row">
+  <h2><span class="bg-secondary">新規会員登録</span></h2>
+ </div>
+ 
+ <div class="row">
 <%= form_with model: @customer, url: customer_registration_path do |f| %>
   <%= render "public/shared/error_messages", resource: resource %>
 
-  <table class="table">
+<table>
     <tr>
      <td>名前</td>
-     <td>(姓)</td>
-     <td><%= f.text_field :last_name %></td>
-     <td>(名)</td>
-     <td><%= f.text_field :first_name %> </td>
+     <td>（姓）</td>
+     <td>
+      <%= f.text_field :last_name %>
+     </td>
+     <td>（名）</td>
+     <td>
+      <%= f.text_field :first_name %>
+     </td>
     </tr>
     
     <tr>
      <td>フリガナ</td>
-     <td>(セイ)</td>
-     <td><%= f.text_field :last_name_kana %></td>
-     <td>(メイ)</td>
-     <td><%= f.text_field :first_name_kana %> </td>
+     <td>（セイ）</td>
+     <td>
+      <%= f.text_field :last_name_kana %>
+     </td>
+     <td>（メイ）</td>
+     <td>
+      <%= f.text_field :first_name_kana %>
+     </td>
     </tr>
-    
+
     <tr>
      <td>メールアドレス</td>
      <td></td>
@@ -81,12 +93,18 @@
   </table>
 
 <% end %>
+</div>
 
-<%= render "public/shared/links" %>
+<div class="row">
 <h2><span class="bg-secondary">既に登録済みの方</span></h2>
+</div>
+
 <p>
  <span>
   <%= link_to "こちら", new_session_path(resource_name) %>
  </span>
  からログインしてください
 </p>
+
+ </div>
+</div>
