@@ -6,10 +6,7 @@ Rails.application.routes.draw do
 }
 
   scope module: :public do
-    get 'deliveries/new'
-    post 'deliveries' => 'deliveries#create' 
-    get 'deliveries/index'
-    get 'deliveries/edit'
+    resources :deliveries, only: [:new, :create, :index, :edit, :update, :destroy]
     
     #resource :customers, only: [:show, :edit]
     get 'customers/my_page'  => 'customers#show'
