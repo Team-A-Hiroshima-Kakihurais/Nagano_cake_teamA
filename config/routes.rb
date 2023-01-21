@@ -19,15 +19,14 @@ Rails.application.routes.draw do
 }
 
   scope module: :public do
-    get 'deliveries/new'
-    post 'deliveries' => 'deliveries#create' 
-    get 'deliveries/index'
-    get 'deliveries/edit'
+    resources :deliveries, only: [:new, :create, :index, :edit, :update, :destroy]
     
     #resource :customers, only: [:show, :edit]
     get 'customers/my_page'  => 'customers#show'
     get 'customers/information/edit' => 'customers#edit', as: 'edit_customer'
     patch 'customers/information' => 'customers#update', as: 'update_customer'
+    get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
+    patch 'customers/withdrawal' => 'customers#withdrawal', as: 'withdrawal'
     
     root to: "homes#top"
     get 'about' => 'homes#about', as: 'about'
