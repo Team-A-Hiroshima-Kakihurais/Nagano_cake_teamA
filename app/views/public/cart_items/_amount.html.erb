@@ -1,0 +1,5 @@
+<%= form_with model:cart do |f| %>
+  <%= f.select :amount, [1,2,3,4,5],{include_blank: '個数選択'} %>
+  <%= f.hidden_field :item_id, :value => item.id%>
+  <%= f.submit 'カートに入れる'%>
+<% end %>
