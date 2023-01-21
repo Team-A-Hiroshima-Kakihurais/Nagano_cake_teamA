@@ -1,12 +1,5 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    get 'orders/show'
-  end
-  namespace :admin do
-    get 'genres/index'
-    get 'genres/edit'
-  end
-  namespace :public do
+   namespace :public do
     get 'deliveries/index'
     get 'deliveries/edit'
   end
