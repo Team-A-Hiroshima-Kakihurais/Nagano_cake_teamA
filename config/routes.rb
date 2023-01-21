@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   devise_for :customers,skip: [:passwords], controllers: {
   registrations: "public/registrations",
   sessions: 'public/sessions'
@@ -12,6 +11,8 @@ Rails.application.routes.draw do
     get 'customers/my_page'  => 'customers#show'
     get 'customers/information/edit' => 'customers#edit', as: 'edit_customer'
     patch 'customers/information' => 'customers#update', as: 'update_customer'
+    get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
+    patch 'customers/withdrawal' => 'customers#withdrawal', as: 'withdrawal'
     
     root to: "homes#top"
     get 'about' => 'homes#about', as: 'about'
