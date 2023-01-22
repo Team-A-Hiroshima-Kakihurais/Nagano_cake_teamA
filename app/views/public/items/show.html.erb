@@ -1,7 +1,35 @@
-<h2><%= @item.name%></h1>
-<%= @item.introduction %>
-<p>
-  <%= to_total_currnecy(@item.add_total_payment) %>
-  <span>(税込)</span>
-</p>
-<%= render 'public/cart_items/amount', cart:@cart, item:@item %>
+<div class="container" id="item-warpper">
+  <div class="row">
+    <div class="col-sm-2">
+      <%= render 'public/tmp/genre_list', genres: @genres %>
+    </div>
+    <div class="col-md-8">
+      <div class="d-flex">
+        <%= image_tag @item.get_image(250) %>
+        <div class="ml-4 pl-4">
+          <h3 class="font-weight-bold mb-3"><%= @item.name%></h3>
+          <div class="d-flex flex-column justify-content-between h-75">
+            <p class="h5 mb-4">
+              <%= @item.introduction %>
+            </p>
+            <p class="h4">
+              <strong>
+                <%= to_total_currnecy(@item.add_total_payment) %>
+              </strong>
+              <small>(税込)</small>
+            </p>
+          </div>
+        </div>
+      </div>
+      <% if @item.is_active %>
+        <% if current_customer %>
+          <%= render 'public/tmp/amount', cart:@cart, item:@item %>
+        <% end %>
+      <% else %>
+      <div class="text-right">
+        <span class="btn btn-sm btn-secondary">販売停止</span>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
