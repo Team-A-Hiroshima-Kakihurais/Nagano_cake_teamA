@@ -1,36 +1,7 @@
-<div class="container px-5 px-sm-0">
+<div class="container mt-4">
  <div class="row">
-  <h2><span class="bg-secondary">配送先編集</span></h2>
- </div>
- 
- <div class="row">
-<%= form_with model: @delivery do |f| %>
-
-<table>
-    <tr>
-     <td>郵便番号（ハイフンなし）</td>
-     <td><%= f.text_field :post_code %></td>
-    </tr>
-    
-    <tr>
-     <td>住所</td>
-     <td><%= f.text_field :address %></td>
-    </tr>
-
-    <tr>
-     <td>宛名</td>
-     <td><%= f.text_field :name %></td>
-    </tr>
-</table>
-  
-  <div class="form-group">
-   <%= f.submit "変更内容を保存", class: 'btn btn-success btn-sm' %>
+  <div class="col">
+  <%= render 'public/deliveries/new', delivery:@delivery %>
   </div>
-  
-<% end %>
-</div>
-
-
-
  </div>
 </div>

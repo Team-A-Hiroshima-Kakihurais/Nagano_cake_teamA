@@ -1,11 +1,12 @@
-<div class="container px-5 px-sm-0">
+<div class="container mt-4">
  <div class="row">
    <di class="col">
     <h2><span class="bg-secondary">配送先登録/一覧</span></h2>
+    <div class="mt-4">
+     <%= render 'new', delivery: @delivery %>
+    </div>
  
-   <%= render 'new', delivery: @delivery %>
- 
-   <table class="table table-bordered border-dark">
+   <table class="table table-bordered border-dark mt-4">
     <tr>
      <td class="table-active">郵便番号</td>
      <td class="table-active">住所</td>
