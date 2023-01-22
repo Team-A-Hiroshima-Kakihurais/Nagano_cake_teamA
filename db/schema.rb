@@ -63,18 +63,18 @@ ActiveRecord::Schema.define(version: 2023_01_21_054637) do
   end
 
   create_table "customers", force: :cascade do |t|
-    t.string "last_name"
-    t.string "first_name"
-    t.string "last_name_kana"
-    t.string "first_name_kana"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
-    t.string "post_code"
-    t.string "address"
-    t.string "phone_number"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "last_name", null: false
+    t.string "first_name", null: false
+    t.string "last_name_kama", null: false
+    t.string "first_name_kama", null: false
+    t.string "post_code", null: false
+    t.string "address", null: false
+    t.integer "phone_number", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "is_deleted", default: false
@@ -99,14 +99,14 @@ ActiveRecord::Schema.define(version: 2023_01_21_054637) do
   end
 
   create_table "items", force: :cascade do |t|
-    t.integer "genre_id", null: false
     t.string "name", null: false
     t.text "introduction", null: false
     t.integer "price", null: false
     t.boolean "is_active", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["genre_id"], name: "index_items_on_genre_id"
+    t.string "genre", null: false
+    t.integer "genre_id"
   end
 
   create_table "order_items", force: :cascade do |t|
@@ -140,7 +140,6 @@ ActiveRecord::Schema.define(version: 2023_01_21_054637) do
   add_foreign_key "cart_items", "customers"
   add_foreign_key "cart_items", "items"
   add_foreign_key "deliveries", "customers"
-  add_foreign_key "items", "genres"
   add_foreign_key "order_items", "items"
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "customers"

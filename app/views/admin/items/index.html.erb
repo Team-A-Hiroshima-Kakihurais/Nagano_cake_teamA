@@ -1,0 +1,32 @@
+<div class='container'>
+    <div class='row'>
+        <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+            <h2>商品一覧</h2><%=link_to new_admin_item_path do%><p>+商品新規登録</p><% end %>
+            <table class='table table-hover table-inverse'>
+              <thead>
+                <tr>
+                    <th>商品ID</th>
+                    <th>商品名</th>
+                    <th>税抜価格</th>
+                    <th>ジャンル</th>
+                    <th>ステータス</th>
+                </tr>
+            </thead>
+            <tbody>
+            <!-- リファクタリングの為ブロックは{}を使って作成しています。 -->
+            <!-- ブロックはBookers等ではdoとendを使って作成していましたが波括弧でも作成できます。 -->
+                <% @item.each { |item| %>
+                  <tr>
+                      <td><%= item.id %></td>
+                      <td><%= link_to item.name, admin_item_path(item.id)%></td>
+                      <td><%= item.price %></td>
+                      <td><%= item.genre %></td><!--リファクタリングでif文の代わりに「?と:」を使っています。これは「条件演算子」と言います。興味があったら調べてください。 -->
+                      <td><%= !item.is_active ? '販売中止中' : "販売中" %></td>
+                  </tr>
+                <% } %>
+                </tbody>
+            </table>
+            <%= paginate @item %>
+        </div>
+    </div>
+</div>
