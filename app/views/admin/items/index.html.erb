@@ -20,7 +20,7 @@
                       <td><%= item.id %></td>
                       <td><%= link_to item.name, admin_item_path(item.id)%></td>
                       <td><%= item.price %></td>
-                      <td><%= item.genre %></td><!--リファクタリングでif文の代わりに「?と:」を使っています。これは「条件演算子」と言います。興味があったら調べてください。 -->
+                      <% @genre.each { |genre| %> <td><%= genre.name %></td> <% } %> <!--リファクタリングでif文の代わりに「?と:」を使っています。これは「条件演算子」と言います。興味があったら調べてください。 -->
                       <td><%= !item.is_active ? '販売中止中' : "販売中" %></td>
                   </tr>
                 <% } %>

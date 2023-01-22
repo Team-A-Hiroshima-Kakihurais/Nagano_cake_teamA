@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :admins
    namespace :public do
     get 'deliveries/index'
     get 'deliveries/edit'
@@ -39,9 +40,7 @@ Rails.application.routes.draw do
   end
 
 
-devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
-  sessions: "admin/sessions"
-}
+
 
 namespace :admin do
   resources :items, only: [:index, :new, :create, :show, :edit, :update]
