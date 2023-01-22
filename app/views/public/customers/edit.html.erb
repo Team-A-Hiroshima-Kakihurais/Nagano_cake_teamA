@@ -1,11 +1,10 @@
 <div class="container px-5 px-sm-0">
  <div class="row">
-  <h2><span class="bg-secondary">会員情報登録</span></h2>
+  <h2><span class="bg-secondary">会員情報編集</span></h2>
  </div>
  
  <div class="row">
 <%= form_with model: @customer, url: update_customer_path(current_customer), method: :patch do |f| %>
-  <%#= render "public/shared/error_messages", resource: resource %>
 
 <table>
     <tr>
@@ -68,6 +67,7 @@
   
   <div class="form-group">
    <%= f.submit "編集内容を保存", class: 'btn btn-success btn-sm' %>
+   <%= link_to "退会する",  unsubscribe_path, class: 'btn btn-sm btn-danger' %>
   </div>
 
 <% end %>
