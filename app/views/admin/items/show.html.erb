@@ -6,7 +6,7 @@
 <div class='container'>
     <div class='row'>
         <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto pt-5">
-            <%= image_tag @item.get_profile_image, size:"500x500" %><br>
+            <%= image_tag @item.get_image(500) %><br>
             <p><%= "商品名" %>　<%= @item.id %></p>
             <p><%= "商品詳細" %>　<%= @item.introduction %></p>
             <p><%= "ジャンル" %>　<%= @genre.name %></p>
