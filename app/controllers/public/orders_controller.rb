@@ -1,13 +1,14 @@
 class Public::OrdersController < ApplicationController
   def new
     @order = Order.new
-    @deliveries = Delivery.all.map do |delivery|
-    # @deliveries = current_customer.deliveries.map do |delivery|
-      [
-        delivery.id,
-        "〒#{delivery.post_code} #{delivery.address} #{delivery.name}"
-      ]
-    end
+    @deliveries = current_customer.deliveries
+    # @deliveries = Delivery.all.map do |delivery|
+    # # @deliveries = current_customer.deliveries.map do |delivery|
+    #   [
+    #     delivery.id,
+    #     "〒#{delivery.post_code} #{delivery.address} #{delivery.name}"
+    #   ]
+    # end
   end
 
   def confirm

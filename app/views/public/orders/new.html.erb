@@ -1,37 +1,52 @@
-<h2>注文情報入力</h2>
-<%= form_with model: @order, url: confirm_path do |f| %>
-  <p>お支払い方法</p>
-  <%= f.collection_radio_buttons( :payment_method, Order.payment_methods_i18n, :first, :last) do |b| %>
-  <%= b.label { b.radio_button + b.text } %><br/>
-  <% end %>
-<div>
-  <%= f.radio_button :option, 0, checked: "checked" %>
-  <%= f.label :option_0, "ご自身の住所" %><br/>
-  <%= current_customer.add_delivery_address %><br/>
-  <%= current_customer.add_full_name %>
-</div>
-<div>
-  <%= f.radio_button :option, 1 %>
-  <%= f.label :option_1, "登録済住所から選択" %><br>
-  <%= f.collection_select :address_id, @deliveries, :first, :last,{include_blank:'選択してください'} %>
-</div>
-<div>
-  <div>
-    <%= f.radio_button :option, 2 %>
-    <%= f.label :option_2, "新しいお届け先" %>
+<div class="container mt-4">
+  <div class="w-75 mx-auto">
+    <h5 class="font-weight-bold w-75 mx-auto">注文情報入力</h5>
+    <%= form_with model: @order, url: confirm_path do |f| %>
+    <div class="form-group mt-4">
+      <h6 class="font-weight-bold">お支払い方法</h6>
+      <div class="form-check">
+        <%= f.collection_radio_buttons( :payment_method, Order.payment_methods_i18n, :first, :last) do |b| %>
+        <%= b.radio_button({ class: "form-input-check"}) %>
+        <%= b.label({ class: "form-check-label"}) %><br/>
+        <% end %>
+      </div>
+    </div>
+    <div class="form-group mt-4">
+      <h6 class="font-weight-bold">お届け先</h6>
+      <div class="form-check mt-3">
+        <%= f.radio_button :option, 0, {checked: "checked", class: "form-input-check"} %>
+        <%= f.label :option_0, "ご自身の住所", class: "from-check-label" %><br/>
+        <div class="ml-4">
+          <%= current_customer.add_delivery_address %><br/>
+          <%= current_customer.add_full_name %>
+        </div>
+      </div>
+      <div class="form-check mt-3">
+        <%= f.radio_button :option, 1,{class: "from-input-check"} %>
+        <%= f.label :option_1, "登録済住所から選択", class:"from-check-label" %><br>
+        <div class="ml-3">
+          <%= f.select :address_id, @deliveries.map { |k| [t("#{k.join_address_name}"), k.id] },
+          { include_blank: "選択してください" }, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-check mt-4">
+        <%= f.radio_button :option, 2, {class: "from-input-check"} %>
+        <%= f.label :option_2, "新しいお届け先", class:"from-check-label" %>
+        <div class="form-inline ml-4">
+          <%= f.label :other_post_code, "郵便番号(ハイフンなし)" %>
+          <%= f.text_field :other_post_code, class:"form-control w-50" %>
+        </div>
+        <div class="form-inline ml-4">
+          <%= f.label :other_address, "住所" %>
+          <%= f.text_field :other_address, class:"form-control w-75" %>
+        </div>
+        <div class="form-inline ml-4">
+          <%= f.label :other_name, "宛名" %>
+          <%= f.text_field :other_name, class:"form-control w-50" %>
+        </div>
+      </div>
+    </div>
+    <%= f.submit '確認画面へ進む', class:" btn btn-sm btn-primary" %>
+    <% end %>
   </div>
-  <di>
-    <%= f.label :other_post_code, "郵便番号(ハイフンなし)" %>
-    <%= f.text_field :other_post_code %>
-  </di>
-  <div>
-    <%= f.label :other_address, "住所" %>
-    <%= f.text_field :other_address %>
-  </div>
-  <div>
-    <%= f.label :other_name, "宛名" %>
-    <%= f.text_field :other_name %>
-  </div>
 </div>
-<%= f.submit '確認画面へ進む' %>
-<% end %>
