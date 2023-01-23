@@ -1,0 +1,24 @@
+<div class='container'>
+    <div class='row'>
+            <h2>商品詳細</h2>
+    </div>
+</div>
+<div class='container'>
+    <div class='row'>
+        <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto pt-5">
+            <%= image_tag @item.get_image(500) %><br>
+            <p><%= "商品名" %>　<%= @item.id %></p>
+            <p><%= "商品詳細" %>　<%= @item.introduction %></p>
+            <p><%= "ジャンル" %>　<%= @genre.name %></p>
+            <p><%= "税込価格(税抜価格)" %>　<%= @item.price %></p><!--リファクタリングでif文の代わりに「?と:」を使っています。これは「条件演算子」と言います。興味があったら調べてください。 -->
+            <p><%= "販売ステータス" %>　<%= !@item.is_active ? '販売中止中' : "販売中" %></p>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="mx-auto">
+            <%= link_to "編集する", edit_admin_item_path(@item.id) %>
+        </div>
+    </div>
+</div>
