@@ -3,16 +3,15 @@ class Item < ApplicationRecord
   has_one_attached :image
   has_many :carts, dependent: :destroy
   has_many :order_items, dependent: :destroy
-  
-  #アイテムはジャンルに属する(genre:item = 1:N)
   belongs_to :genre
   
+  scope :serch_genre, ->(genre) {where(genre_id: genre)}
+  
   # 税込金額を求めるメソッド
-  def add_total_payment(tax)
+  def add_total_payment
+    tax = 1.08
     (self.price * tax.to_f).floor
   end
-  
-  scope :serch_genre, ->(genre) {where(genre_id: genre)}
   
   def get_image(width)
     unless self.image.attached?
