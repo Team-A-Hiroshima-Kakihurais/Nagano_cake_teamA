@@ -1,6 +1,5 @@
 class Public::DeliveriesController < ApplicationController
   
-  
   def index
     @delivery = Delivery.new
     @customer = Customer.find(current_customer.id)
@@ -9,7 +8,7 @@ class Public::DeliveriesController < ApplicationController
   
   def new
     @delivery = Delivery.new
-  end 
+  end
   
   def create
     @delivery = Delivery.new(delivery_params)

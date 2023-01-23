@@ -1,22 +1,15 @@
-   <%= form_with model: delivery do |f| %>
-   <table class="table">
-   <tr>
-    <td>郵便番号（ハイフンなし）</td>
-    <td><%= f.text_field :post_code %></td>
-    <td></td>
-   </tr>
-        
-   <tr>
-    <td>住所</td>
-    <td><%= f.text_field :address %></td>
-    <td></td>
-   </tr>
-   
-   <tr>
-    <td>宛名</td>
-    <td><%= f.text_field :name %></td>
-    <td><%= f.submit '新規登録', class: 'btn btn-success btn-sm' %></td>
-   </tr>  
-  </table>
-  <% end %>
-
+ <%= form_with model: delivery do |f| %>
+  <div class="form-group ml-4">
+    <%= f.label :post_code, '郵便番号(ハイフンなし)' %>
+    <%= f.text_field :post_code, class:"from-control ml-3" %>
+  </div>
+  <div class="form-group ml-4">
+    <%= f.label :address, '住所', class:"address-label d-inline-block" %>
+    <%= f.text_field :address, class:"from-control ml-3 w-25" %>
+  </div>
+  <div class="form-group ml-4">
+    <%= f.label :name, '宛名', class:"address-label d-inline-block" %>
+    <%= f.text_field :name, class:"from-control ml-3 mr-4" %>
+    <%= f.submit "#{add_submit_text}", class: 'btn btn-success btn-sm' %>
+  </div>
+<% end %>

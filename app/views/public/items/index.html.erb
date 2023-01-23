@@ -11,13 +11,13 @@
             <%= link_to item_path(item.id) do %>
               <%= image_tag item.get_image(175), class:"card-image-top" %>
             <% unless item.is_active %>
-            <div class="not-sale">
-              <p>販売停止</p>
-            </div>
+              <div class="not-sale">
+                <p>販売停止</p>
+              </div>
             <% end %>
             <div class="card-body text-dark py-2 font-weight-bold">
               <p class="card-title mb-2"><%= item.name %></p>
-              <p class="card-subtitle"><%= to_total_currnecy(item.price) %></p>
+              <p class="card-subtitle"><%= to_total_currency(item.price) %></p>
             </div>
             <% end %>
           </div>

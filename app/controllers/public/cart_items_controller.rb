@@ -9,12 +9,12 @@ class Public::CartItemsController < ApplicationController
 
   def create
     increase_or_create(params[:cart_item][:item_id],params[:cart_item][:amount])
-    redirect_to cart_items_path, notice:'商品を追加しました'
+    redirect_to cart_items_path, notice:' 商品を追加しました'
   end
 
   def update
     @cart_item.update(cart_params)
-    redirect_to request.referer
+    redirect_to request.referer, notice:' カートを変更しました'
   end
 
   def destroy
