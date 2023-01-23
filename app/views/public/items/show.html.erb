@@ -12,9 +12,9 @@
             <p class="h5 mb-4">
               <%= @item.introduction %>
             </p>
-            <p class="h4">
+            <p class="h4 mb-4">
               <strong>
-                <%= to_total_currnecy(@item.add_total_payment) %>
+                <%= to_total_currency(@item.add_total_payment) %>
               </strong>
               <small>(税込)</small>
             </p>
@@ -23,7 +23,9 @@
       </div>
       <% if @item.is_active %>
         <% if current_customer %>
+        <div class="w-50 mt-4 mr-0 ml-auto">
           <%= render 'public/tmp/amount', cart:@cart, item:@item %>
+        </div>
         <% end %>
       <% else %>
       <div class="text-right">

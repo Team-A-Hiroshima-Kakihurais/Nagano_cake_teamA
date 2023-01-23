@@ -1,8 +1,9 @@
 <div class="container mt-4">
-  <h4 class="text-success" id="flash-area"><%= notice %></h4>
+  <h4 class="text-light bg-secondary"><%= notice %></h4>
   <div class="d-flex justify-content-between align-items-center">
     <h2>ショッピングカート</h2>
-    <%= link_to 'カートを空にする', destroy_all_path, method: :delete, class:"btn btn-sm btn-danger h-75" %>
+    <%= link_to 'カートを空にする', destroy_all_path, method: :delete, 
+    "data-confirm" => "本当に削除しますか？", class:"btn btn-sm btn-danger h-75" %>
   </div>
   <table class="table table-bordered table-hover mt-3">
     <thead class="thead-dark">
@@ -18,25 +19,22 @@
     <tbody>
         <% @carts.each do |cart| %>
       <tr>
-        <td class="align-middle">
+        <td class="align-middle py-0">
           <%= image_tag cart.item.get_image(80)%>
           <%= cart.item.name %>
         </td>
-        <td class="align-middle"><%= cart.item.add_total_payment %></td>
-        <td class="align-middle">
-          <%= form_with model:cart do |f| %>
+        <td class="align-middle py-0"><%= cart.item.add_total_payment %></td>
+        <td class="align-middle py-0">
           <div class="form-group mt-3">
-            <%= f.select :amount, [*1..10],{class: "form-control"} %>
-            <%= f.hidden_field :item_id, :value => cart.item.id%>
-            <%= f.submit '変更', class: " ml-2 btn btn-success btn-sm"%>
+            <%= render 'public/tmp/amount', cart:cart, item:cart.item %>
           </div>
-          <% end %>
-        </td class="align-middle">
-        <td class="align-middle">
+        </td>
+        <td class="align-middle py-0">
           <%= cart.add_total_payment_all %>
         </td>
-        <td class="align-middle">
-          <%= link_to '消去する', cart_item_path(cart.id), method: :delete, class:"btn btn-sm btn-danger" %>
+        <td class="align-middle py-0">
+          <%= link_to '消去する', cart_item_path(cart.id), method: :delete,
+          "data-confirm" => "本当に削除しますか？", class:"btn btn-sm btn-danger" %>
         </td>
       </tr>
         <% end %>
@@ -53,7 +51,7 @@
       <thead>
         <tr>
           <th class="table-active py-3 w-50 text-center">合計金額</th>
-          <th class="text-center"><%= to_total_currnecy(@total) %></th>
+          <th class="text-center"><%= to_total_currency(@total) %></th>
         </tr>
       </thea>
     </table>
