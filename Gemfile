@@ -28,7 +28,6 @@ gem 'image_processing', '~> 1.2'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'enum_help'
-gem 'kaminari','~>1.2.1'
 gem 'bootstrap4-kaminari-views'
 
 group :development, :test do
