@@ -23,7 +23,7 @@
           <%= image_tag cart.item.get_image(80)%>
           <%= cart.item.name %>
         </td>
-        <td class="align-middle py-0"><%= cart.item.add_total_payment %></td>
+        <td class="align-middle py-0"><%= cart.item.add_total_payment(1.1) %></td>
         <td class="align-middle py-0">
           <div class="form-group mt-3">
             <%= render 'public/tmp/amount', cart:cart, item:cart.item %>

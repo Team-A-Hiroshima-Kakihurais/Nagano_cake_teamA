@@ -10,4 +10,7 @@ class ApplicationRecord < ActiveRecord::Base
     tax = 1.08
     (self.price * tax).floor * self.amount
   end
+  
+  
+  
 end

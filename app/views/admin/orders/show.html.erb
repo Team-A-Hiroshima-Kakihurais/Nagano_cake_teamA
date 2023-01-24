@@ -27,16 +27,36 @@
                </thead>
                <tbody>
                    <% @item.each { |item| %>
+                   <% total = 0 %>
+                   <% item.order_items.each { |order_item| %>
+                   <% total += order_item.amount %>
+                   <% } %>
                    <tr>
                        <td><%= item.name%></td>
                        <td><%= item.price%></td>
                        <td><%= @order.status_i18n%></td>
+                       <td><%= total %></td>
                        <td><%=  %></td>
                        <td><%=  %></td>
-                       <td><%=  %></td>
+                       
                    </tr>
                    <% } %>
                </tbody>
            </table>
     </div>
 </div>
+
+
+
+
+
+     <!-- 	  <th class="table-active">送料</th>
+      	  <th><#%= to_total_currency(@order.postage) %></th>
+        </tr>
+        <tr>
+          <th class="table-active">商品合計</th>
+        	 <th><#%= to_total_currency(@total) %></th>
+        </tr>
+        <tr>
+          <th class="table-active">請求金額</th>
+        	<th><#%= to_total_currency(@order.total_payment = @order.postage + @total) %></th> --!>
