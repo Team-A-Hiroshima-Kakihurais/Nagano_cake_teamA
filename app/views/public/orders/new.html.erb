@@ -6,7 +6,7 @@
       <h6 class="font-weight-bold">お支払い方法</h6>
       <div class="form-check">
         <%= f.collection_radio_buttons( :payment_method, Order.payment_methods_i18n, :first, :last) do |b| %>
-        <%= b.radio_button({ class: "form-input-check"}) %>
+        <%= b.radio_button({ class: "form-input-check", required: true}) %>
         <%= b.label({ class: "form-check-label"}) %><br/>
         <% end %>
       </div>
