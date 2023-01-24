@@ -8,27 +8,36 @@
   <div class="col-md-8 offset-md-1 mt-5">
    
    <div class="row">
-    <span class="border border-primary">
-     ようこそ、ながのCAKEへ!
-     このサイトは、ケーキ販売のECサイトになります。
-     会員でない方も商品の閲覧はできますが、
-     購入には会員登録が必要になります。
-    </span>
+    <div class="card text-light">
+     <%= image_tag 'default.jpg', size:"750x500" %>
+      <div class="card-img-overlay">
+       <h5 class="card-title">
+        <p class="text-center">
+         ようこそ、ながのCAKEへ!</br>
+         このサイトは、ケーキ販売のECサイトになります。</br>
+         会員でない方も商品の閲覧はできますが、</br>
+         購入には会員登録が必要になります。
+        </p>
+       </h5>
+      </div>
+    </div>
    </div>
    
    <div class="row">
-   <h2>新着商品</h2>
-   <table class="table table-borderless">
-    <tr>
-     <% @items.each do |item| %>
-     <td>
-      <%= image_tag item.get_image(175), class:"card-image-top" %>
-      <%= link_to item.name, item_path(item.id) %></br>
-      ￥<%= item.price %>
-     </td>
-     <% end %>   
-    </tr>
-   </table>
+    <div class="mt-5">
+    <h2>新着商品</h2>
+    <table class="table table-borderless">
+     <tr>
+      <% @items.each do |item| %>
+       <td>
+        <%= image_tag item.get_image(175), class:"card-image-top" %>
+        <%= link_to item.name, item_path(item.id) %></br>
+        ￥<%= item.price %>
+       </td>
+      <% end %>   
+     </tr>
+    </table>
+    </div>
    </div>
   
   <p class="text-right">
@@ -38,11 +47,4 @@
  </div>
 </div>
 
-<div class="card text-bg-dark">
-  <img src="default.jpg" class="card-img">
-  <div class="card-img-overlay">
-    <h5 class="card-title">カードのタイトル</h5>
-    <p class="card-text">これは、追加コンテンツへの自然な導入として以下のテキストをサポートする、より幅広いカードです。このコンテンツはもう少し長くなります。</p>
-    <p class="card-text"><small>最終更新3分前</small></p>
-  </div>
-</div>
+
