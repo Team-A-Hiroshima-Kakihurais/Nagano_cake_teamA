@@ -1,7 +1,26 @@
 <div class="container mt-4">
  <div class="row">
-  <div class="col">
-  <%= render 'public/deliveries/new', delivery:@delivery %>
+  <div class="offset-md-4 mt-5">
+   <h2><span class="bg-secondary">配送先編集</span></h2>
   </div>
  </div>
-</div>
+ 
+ <div class="row">
+  <div class="mt-5">
+   <%= form_with model: @delivery do |f| %>
+   <table class="table table-borderless">
+    <tr>
+     <td>郵便番号（ハイフンなし）</td>
+     <td><%= f.text_field :post_code %></td>
+    </tr>
+    <tr>
+     <td>住所</td>
+     <td><%= f.text_field :address %></td>
+    </tr>
+    <tr>
+     <td>宛名</td>
+     <td><%= f.text_field :name %></td>
+     <td><%= f.submit "変更内容を保存", class: 'btn btn-success btn-sm' %></td>
+    </tr>
+   </table>
+   <% end %>

@@ -16,8 +16,7 @@
               </div>
               <div class="form-group">
                 <%= f.label :genre %>
-                <!-- f.collection_select :保存先のカラム名, 選択肢に使うオブジェクト, :一つ目の引数に渡す値, :選択肢に使うカラム名, include_blank: "選択して下さい" -->
-              <%= f.collection_select :genre_id, Genre.all, :id, :name, {include_blank: '---'} %> <!-- このページを見て解決→https://qiita.com/takeda-no-nao/items/5b24f2caf371d6e310f3 -->
+                <%= f.collection_select :genre_id, Genre.all, :id, :name, {include_blank: '---'} %> <!-- このページを見て解決→https://qiita.com/takeda-no-nao/items/5b24f2caf371d6e310f3 -->
               </div>
               <div class="form-group">
                 <%= f.label :price %>
