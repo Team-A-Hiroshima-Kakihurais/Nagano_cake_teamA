@@ -63,8 +63,6 @@ ActiveRecord::Schema.define(version: 2023_01_23_003450) do
   end
 
   create_table "customers", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.string "last_name"
     t.string "first_name"
     t.string "last_name_kana"
