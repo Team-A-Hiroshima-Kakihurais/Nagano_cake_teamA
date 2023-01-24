@@ -25,7 +25,7 @@ class Admin::ItemsController < ApplicationController
     def create
         @item = Item.new(admin_params)
         @item.save
-        redirect_to admin_items_path
+        redirect_back(fallback_location: admin_genres_path)
     end
     
   private

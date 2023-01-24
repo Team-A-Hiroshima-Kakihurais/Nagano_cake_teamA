@@ -5,7 +5,7 @@ ja:
         credit_card: "クレジットカード"
         bank_transfer: "銀行振込"
         cash_of_delivery: "銀行振込"
-      status:
+      status: 
         waiting_for_payment: "入金待ち"
         payment_confirmation: "入金確認"
         now_at_work: "製作中"
