@@ -1,0 +1,10 @@
+<div class="genre-list" id="genre-list">
+<h6 class="border-bottom p-1 text-center border-dark">ジャンル検索</h6>
+  <ul class="list-unstyled ml-3">
+    <li class="my-2"><%= link_to 'すべて', items_path, class:"text-dark" %></li>
+    <% genres.each do |genre|%>
+      <li class="my-2"><%= link_to genre.name, items_path(genre_id: genre.id,genre_name:genre.name),
+      class:"text-dark" %></li>
+    <% end %>
+  </ul>
+</div>

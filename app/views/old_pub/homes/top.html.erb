@@ -1,0 +1,68 @@
+<div class="container px-5 px-sm-0">
+ <div class="row">
+     
+  <div class="col-md-3 mt-5">
+   <table class="table table-bordered border-primary">
+    <tr>
+      <td>name</td>
+    </tr>
+    
+    <% @genres.each do |genre| %>
+    <tr>
+      <td>
+      <!-- <#%= link_to genre_path(genre.id) do %> --> <!-- エラーが発生したので一時的にコメントアウトして機能を無効化しています。ご了承ください。(保科より) -->
+      <%= link_to root_path do %>
+       <p><%= genre.name %></p>
+      <% end %>
+      <% end %>
+      </td>
+    </tr>
+    <%# end %>
+    
+  </table>      
+  </div>
+  
+  <div class="col-md-8 offset-md-1 mt-5">
+   
+   <span class="border border-primary">
+   ようこそ、ながのCAKEへ!
+   このサイトは、ケーキ販売のECサイトになります。
+   会員でない方も商品の閲覧はできますが、
+   購入には会員登録が必要になります。
+   </span>
+   
+   <div class="row">
+   <h2>新着商品</h2>
+   <table class="table">
+    <tr>
+     <%# @items.each do |item| %>
+     <td>
+         <%#= item.name %></br>
+         <%#= item.price %>
+     </td>
+     <%# end %>   
+    </tr>
+   </table> 
+   </div>
+   
+   <ul class="list-group list-group-horizontal">
+   <% @items.each do |item| %>
+   <li class="list-group-item">
+  　<%= item.name %></br>
+    <%= item.price %>
+    </li>
+    <% end %> 
+   </ul>
+   
+  </div>
+  
+  <li class="nav-item">
+              <%= link_to "Log out", destroy_customer_session_path, method: :delete %>
+            </li>
+            
+            <li class="nav-item">
+              <%#= link_to "マイページ", customer_path(current_customer), method: :delete %>
+            </li>
+  
+ </div>
+</div>
