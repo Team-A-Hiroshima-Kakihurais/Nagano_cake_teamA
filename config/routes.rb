@@ -7,11 +7,7 @@ Rails.application.routes.draw do
     get 'customers/show'
     get 'customers/edit'
   end
-  namespace :public do
-    root to: "homes#top"
-    get 'about' => 'homes#about', as: 'about'
-  end 
-  
+
     devise_for :customers,skip: [:passwords], controllers: {
   registrations: "public/registrations",
   sessions: 'public/sessions'

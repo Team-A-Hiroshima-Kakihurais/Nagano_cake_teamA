@@ -1,20 +1,20 @@
 <div class="container px-5 px-sm-0">
  <div class="row">
-  <h2><span class="bg-secondary">新規会員登録</span></h2>
- </div>
+  <div class="col-md-8 offset-md-1 mt-5">
+   <h2><span class="bg-secondary">新規会員登録</span></h2>
+  </div>
  
- <div class="row">
-<%= form_with model: @customer, url: customer_registration_path do |f| %>
-  <%= render "public/shared/error_messages", resource: resource %>
-
-<table>
+  <div class="col-md-8 offset-md-1 mt-5">
+   <%= form_with model: @customer, url: customer_registration_path do |f| %>
+   <%= render "public/shared/error_messages", resource: resource %>
+   <table class="table table-borderless">
     <tr>
      <td>名前</td>
      <td>（姓）</td>
      <td>
       <%= f.text_field :last_name %>
      </td>
-     <td>（名）</td>
+     <td>（名)</td>
      <td>
       <%= f.text_field :first_name %>
      </td>
@@ -22,11 +22,11 @@
     
     <tr>
      <td>フリガナ</td>
-     <td>（セイ）</td>
+     <td>(セイ)</td>
      <td>
       <%= f.text_field :last_name_kana %>
      </td>
-     <td>（メイ）</td>
+     <td nowrap>(メイ)</td>
      <td>
       <%= f.text_field :first_name_kana %>
      </td>
@@ -41,7 +41,7 @@
     </tr>
     
     <tr>
-     <td>郵便番号(ハイフンなし)</td>
+     <td nowrap>郵便番号(ハイフンなし)</td>
      <td></td>
      <td>
       <%= f.text_field :post_code %>
@@ -57,7 +57,7 @@
     </tr>
     
     <tr>
-     <td>電話番号（ハイフンなし）</td>
+     <td>電話番号(ハイフンなし)</td>
      <td></td>
      <td>
       <%= f.text_field :phone_number %>
@@ -65,7 +65,7 @@
     </tr>
     
     <tr>
-     <td>パスワード（6文字以上）</td>
+     <td>パスワード(6文字以上)</td>
      <td></td>
      <td>
       <%= f.password_field :password, autocomplete: "new-password" %>
@@ -73,7 +73,7 @@
     </tr>
     
     <tr>
-     <td>パスワード（確認用）</td>
+     <td>パスワード(確認用)</td>
      <td></td>
      <td>
       <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
@@ -89,22 +89,19 @@
       </div>
      </td>
     </tr>
-    
-  </table>
+   </table>
+   <% end %>
+  </div>
 
-<% end %>
-</div>
-
-<div class="row">
-<h2><span class="bg-secondary">既に登録済みの方</span></h2>
-</div>
-
-<p>
- <span>
-  <%= link_to "こちら", new_session_path(resource_name) %>
- </span>
- からログインしてください
-</p>
+  <div class="col-md-8 offset-md-1 mt-5">
+   <h2><span class="bg-secondary">既に登録済みの方</span></h2>
+   <p class="mt-3">
+    <span>
+     <%= link_to "こちら", new_session_path(resource_name) %>
+    </span>
+     からログインしてください
+   </p>
+  </div>
 
  </div>
 </div>

@@ -1,10 +1,15 @@
 <div class="container px-5 px-sm-0">
+ 
  <div class="row">
-  <h2><span class="bg-secondary">配送先登録/一覧</span></h2>
+  <div class="offset-md-4 mt-4">
+   <h2><span class="bg-secondary">配送先登録/一覧</span></h2>
+  </div>
  </div>
  
  <div class="row">
-  <%= render 'new', delivery: @delivery %>
+  <div class="mt-5 mb-5">
+   <%= render 'new', delivery: @delivery %>
+  </div>
  </div>
  
  <div class="row">
@@ -13,6 +18,7 @@
     <td class="table-active">郵便番号</td>
     <td class="table-active">住所</td>
     <td class="table-active">宛名</td>
+    <td class="table-active"></td>
    </tr>
    
    <% @deliveries.each do |delivery| %>       
@@ -20,9 +26,12 @@
     <td><%= delivery.post_code %></td>
     <td><%= delivery.address %></td>
     <td><%= delivery.name %></td>
-    <td><%= link_to "編集する", edit_delivery_path(delivery), class: 'btn btn-sm btn-success' %></td>
-    <td><%= link_to "削除する", delivery_path(delivery.id), method: :delete, data: { confirm: '本当に消しますか？' }, class: 'btn btn-sm btn-danger' %></td>
+    <td>
+     <%= link_to "編集する", edit_delivery_path(delivery), class: 'btn btn-sm btn-success' %>
+     <%= link_to "削除する", delivery_path(delivery.id), method: :delete, data: { confirm: '本当に消しますか？' }, class: 'btn btn-sm btn-danger' %>
+    </td>
    </tr>
    <% end %>
   </table>
-
+ </div>
+</div>
