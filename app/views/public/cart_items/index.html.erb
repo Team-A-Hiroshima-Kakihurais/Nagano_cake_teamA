@@ -23,16 +23,16 @@
           <%= image_tag cart.item.get_image(80)%>
           <%= cart.item.name %>
         </td>
-        <td class="align-middle py-0"><%= cart.item.add_total_payment(1.1) %></td>
-        <td class="align-middle py-0">
+        <td class="align-middle py-1"><%= cart.item.add_total_payment.to_s(:delimited) %></td>
+        <td class="align-middle py-1">
           <div class="form-group mt-3">
             <%= render 'public/tmp/amount', cart:cart, item:cart.item %>
           </div>
         </td>
-        <td class="align-middle py-0">
+        <td class="align-middle py-1">
           <%= cart.add_total_payment_all %>
         </td>
-        <td class="align-middle py-0">
+        <td class="align-middle py-1">
           <%= link_to '消去する', cart_item_path(cart.id), method: :delete,
           "data-confirm" => "本当に削除しますか？", class:"btn btn-sm btn-danger" %>
         </td>
@@ -51,7 +51,7 @@
       <thead>
         <tr>
           <th class="table-active py-3 w-50 text-center">合計金額</th>
-          <th class="text-center"><%= to_total_currency(@total) %></th>
+          <th class="text-center"><%= @total.to_s(:delimited) %></th>
         </tr>
       </thea>
     </table>

@@ -1,0 +1,62 @@
+<div class="container mt-4">
+  <h4 class="text-light bg-secondary"><%= notice %></h4>
+  <div class="d-flex justify-content-between align-items-center">
+    <h2>ショッピングカート</h2>
+    <%= link_to 'カートを空にする', destroy_all_path, method: :delete, 
+    "data-confirm" => "本当に削除しますか？", class:"btn btn-sm btn-danger h-75" %>
+  </div>
+  <table class="table table-bordered table-hover mt-3">
+    <thead class="thead-dark">
+      <tr>
+        <th>商品名</th>
+        <th>単価(税込)</th>
+        <th>数量</th>
+        <th>小計</th>
+        <th></th>
+      </tr>
+    </thead>
+    <% if @carts.present?%>
+    <tbody>
+        <% @carts.each do |cart| %>
+      <tr>
+        <td class="align-middle py-0">
+          <%= image_tag cart.item.get_image(80)%>
+          <%= cart.item.name %>
+        </td>
+        <td class="align-middle py-0"><%= cart.item.add_total_payment %></td>
+        <td class="align-middle py-0">
+          <div class="form-group mt-3">
+            <%= render 'public/tmp/amount', cart:cart, item:cart.item %>
+          </div>
+        </td>
+        <td class="align-middle py-0">
+          <%= cart.add_total_payment_all %>
+        </td>
+        <td class="align-middle py-0">
+          <%= link_to '消去する', cart_item_path(cart.id), method: :delete,
+          "data-confirm" => "本当に削除しますか？", class:"btn btn-sm btn-danger" %>
+        </td>
+      </tr>
+        <% end %>
+    <% else %>
+    <tr>
+      <td>商品はありません</td>
+    </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <div class="d-flex justify-content-between align-items-center">
+    <%= link_to '買い物を続ける', items_path, class:"btn btn-sm btn-primary h-75" %>
+    <table class="w-25 table-bordered">
+      <thead>
+        <tr>
+          <th class="table-active py-3 w-50 text-center">合計金額</th>
+          <th class="text-center"><%= to_total_currency(@total) %></th>
+        </tr>
+      </thea>
+    </table>
+  </div>
+  <di class="text-center d-block mt-4">
+    <%= link_to '情報入力画面へ進む', new_order_path, class:"btn btn-sm btn-success" %>
+  </di>
+</div>

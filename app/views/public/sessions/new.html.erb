@@ -1,17 +1,17 @@
 <div class="container px-5 px-sm-0">
   
- <div class="row">
+ <div class="mt-5">
   <h2><span class="bg-secondary">ログイン</span></h2>
  </div>
  
- <div class="row">
-  <h2><span class="bg-secondary">会員の方はこちらからログイン</span></h2>
+ <div class="mt-4">
+  <p><span class="bg-secondary">会員の方はこちらからログイン</span></p>
  </div>
  
- <div class="row">
+ <div class="offset-md-1 mt-4">
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   
-  <table>
+  <table class="table table-borderless">
     <tr>
      <td>メールアドレス</td>
      <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
@@ -31,11 +31,11 @@
   <% end %>
 </div>
 
-<div class="row">
+<div class="mt-4">
 <h2><span class="bg-secondary">会員登録がお済みでない方</span></h2>
 </div>
 
-<p>
+<p class="mt-4">
  <span>
   <%= link_to "こちら", new_registration_path(resource_name) %>
  </span>
