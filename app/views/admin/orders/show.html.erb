@@ -26,32 +26,43 @@
                    </tr>
                </thead>
                <tbody>
-                   <% @item.each { |item| %>
-                   <% total = 0 %>
-                   <% item.order_items.each { |order_item| %>
-                   <% total += order_item.amount %>
-                   <% } %>
+                   <% @order_item.each { |order_item| %>
+                   <% @total +=  order_item.add_total_payment_all  %>
                    <tr>
-                       <td><%= item.name%></td>
-                       <td><%= item.price%></td>
-                       <td><%= @order.status_i18n%></td>
-                       <td><%= total %></td>
-                       <td><%=  %></td>
-                       <td><%=  %></td>
-                       
+                       <td><%= order_item.item.name %></td>
+                       <td><%= order_item.price %></td>
+                       <td><%= order_item.amount %></td>
+                       <td><%= order_item.price*order_item.amount %>円</td>
+                       <%= form_with model: order_item, url: admin_order_item_path(order_item.id), method: :patch do |f| %>
+                       <td><%= f.select :making_status, OrderItem.making_statuses_i18n.keys.map { |k| [I18n.t("enums.order_item.making_status.#{k}"), k] } %></td>
+                       <td><%= f.submit "更新", class: 'btn btn-success' %></td>
+                       <% end %>
                    </tr>
-                   <% } %>
+                  <% } %>
                </tbody>
            </table>
+    </div>
+</div>
+<div class='container'>
+    <div class='row'>
+        <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0">
+        <strong>商品合計</strong>　<%= @total %>円
+        <br>
+        <strong>送料</strong>　<%= @order.postage %>円
+        <br>
+        <strong>請求金額合計</strong>　<%= @order.total_payment %>円
+        </div>
     </div>
 </div>
 
 
 
 
-
-     <!-- 	  <th class="table-active">送料</th>
-      	  <th><#%= to_total_currency(@order.postage) %></th>
+ <!--<div class="col-md-3 mt-4 ml-4">
+      <table class='table table-bordered mt-3'>
+        <tr>
+      	  <th class="table-active">送料</th>
+      	  <th><#%= to_total_currency(@orders.postage) %></th>
         </tr>
         <tr>
           <th class="table-active">商品合計</th>
@@ -59,4 +70,7 @@
         </tr>
         <tr>
           <th class="table-active">請求金額</th>
-        	<th><#%= to_total_currency(@order.total_payment = @order.postage + @total) %></th> --!>
+        	<th><#%= to_total_currency(@orders.total_payment = @orders.postage + @total) %></th>
+        </tr>
+      </table>
+    </div> --!>

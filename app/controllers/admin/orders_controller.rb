@@ -1,7 +1,8 @@
 class Admin::OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
-    @item = Item.all
+    @order_item = @order.order_items
+    @total = 0
   end
   
   def update
@@ -13,7 +14,7 @@ class Admin::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:status)
+    params.require(:order).permit(:status, :order_item)
   end
   
 end
