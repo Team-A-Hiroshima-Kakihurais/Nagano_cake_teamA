@@ -1,5 +1,4 @@
 class Public::CartItemsController < ApplicationController
-  # 制作途中
   before_action :set_cart_item, only: [:update, :destroy]
 
   def index
