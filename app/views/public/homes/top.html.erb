@@ -30,7 +30,7 @@
      <tr>
       <% @items.each do |item| %>
        <td>
-        <%= image_tag item.get_image(175), class:"card-image-top" %>
+        <b><%= image_tag item.get_image(175), class:"card-image-top" %></b>
         <%= link_to item.name, item_path(item.id) %></br>
         ￥<%= item.price %>
        </td>
