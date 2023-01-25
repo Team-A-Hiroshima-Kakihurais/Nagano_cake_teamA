@@ -1,5 +1,6 @@
 class Public::DeliveriesController < ApplicationController
-  
+before_action :ensure_current_customer
+
   def index
     @delivery = Delivery.new
     @customer = Customer.find(current_customer.id)
@@ -49,4 +50,9 @@ class Public::DeliveriesController < ApplicationController
     params.require(:delivery).permit(:post_code, :address, :name)
   end
   
+  def ensure_current_customer
+   if !customer_signed_in?
+     redirect_to root_path
+   end 
+  end 
 end

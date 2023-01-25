@@ -1,5 +1,6 @@
 class Public::CustomersController < ApplicationController
-  
+before_action :ensure_current_customer
+
   def show
     @customer = Customer.find(current_customer.id)
   end 
@@ -34,4 +35,10 @@ class Public::CustomersController < ApplicationController
     def customer_params
       params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :email, :post_code, :address, :phone_number)
     end
+    
+    def ensure_current_customer
+     if !customer_signed_in?
+      redirect_to root_path
+     end 
+    end 
 end
