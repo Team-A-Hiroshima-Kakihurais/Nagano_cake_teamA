@@ -18,7 +18,7 @@
               <%= image_tag cart.item.get_image(50)%>
               <%= cart.item.name %>
             </td>
-            <td><%= to_total_currency(cart.item.add_total_payment(1.1)) %></td>
+            <td><%= to_total_currency(cart.item.add_total_payment) %></td>
             <td><%= cart.amount %></td>
             <td><%= to_total_currency(cart.add_total_payment_all) %></td>
           </tr>
