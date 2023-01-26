@@ -7,7 +7,6 @@ class OrderItem < ApplicationRecord
   }
   belongs_to :order
   belongs_to :item
-  belongs_to :home
   
   def add_total_payment
     tax = 1.08
