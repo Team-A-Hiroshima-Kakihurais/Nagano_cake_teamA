@@ -12,6 +12,8 @@ class Order < ApplicationRecord
     shopped: 4
   }
   
+  validates :name, presence:true
+  
   has_many :order_items, dependent: :destroy
   belongs_to :customer
   
