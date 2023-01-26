@@ -2,7 +2,7 @@
   <h4 class="text-light bg-secondary"><%= notice %></h4>
   <div class="d-flex justify-content-between align-items-center">
     <h2>ショッピングカート</h2>
-    <%= link_to 'カートを空にする', destroy_all_path, method: :delete, 
+    <%= link_to 'カートを空にする', destroy_all_path, method: :delete,
     "data-confirm" => "本当に削除しますか？", class:"btn btn-sm btn-danger h-75" %>
   </div>
   <table class="table table-bordered table-hover mt-3">
@@ -46,7 +46,7 @@
     </tbody>
   </table>
   <div class="d-flex justify-content-between align-items-center">
-    <%= link_to '買い物を続ける', items_path, class:"btn btn-sm btn-primary h-75" %>
+    <%= link_to '買い物を続ける', root_path, class:"btn btn-sm btn-primary h-75" %>
     <table class="w-25 table-bordered">
       <thead>
         <tr>
@@ -57,6 +57,8 @@
     </table>
   </div>
   <di class="text-center d-block mt-4">
-    <%= link_to '情報入力画面へ進む', new_order_path, class:"btn btn-sm btn-success" %>
+    <% if @carts.present?%>
+      <%= link_to '情報入力画面へ進む', new_order_path, class:"btn btn-sm btn-success" %>
+    <% end %>
   </di>
 </div>

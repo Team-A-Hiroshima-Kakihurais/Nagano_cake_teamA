@@ -35,8 +35,8 @@ Item.create(
   address: '大阪府大阪市地先',
   name: '望月三郎'}
   ])
-  
-  Admin.create!(
+
+  Admin.create(
    email: 'test@test.com',
    password: 'testtarou'
 )
