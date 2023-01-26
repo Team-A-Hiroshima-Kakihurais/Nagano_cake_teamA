@@ -1,5 +1,6 @@
 class Public::DeliveriesController < ApplicationController
-  
+before_action :ensure_current_customer
+
   def index
     @delivery = Delivery.new
     @customer = Customer.find(current_customer.id)
@@ -13,8 +14,14 @@ class Public::DeliveriesController < ApplicationController
   def create
     @delivery = Delivery.new(delivery_params)
     @delivery.customer_id = current_customer.id
-    @delivery.save
-    redirect_to deliveries_path
+    if @delivery.save
+      flash[:notice] = "登録に成功しました。"
+      redirect_to deliveries_path
+    else
+      @customer = Customer.find(current_customer.id)
+      @deliveries = @customer.deliveries
+      render :index
+   end 
   end
 
   def edit
@@ -24,7 +31,7 @@ class Public::DeliveriesController < ApplicationController
   def update
     @delivery = Delivery.find(params[:id])
     if @delivery.update(delivery_params)
-      flash[:notice] = "You have updated book successfully."
+      flash[:notice] = "変更を保存しました。"
       redirect_to deliveries_path
     else
       render :edit
@@ -43,4 +50,9 @@ class Public::DeliveriesController < ApplicationController
     params.require(:delivery).permit(:post_code, :address, :name)
   end
   
+  def ensure_current_customer
+   if !customer_signed_in?
+     redirect_to root_path
+   end 
+  end 
 end

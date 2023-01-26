@@ -38,5 +38,5 @@ Item.create(
   
   Admin.create!(
    email: 'test@test.com',
-   password: 'test_tarou'
+   password: 'testtarou'
 )

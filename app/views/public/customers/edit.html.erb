@@ -1,6 +1,19 @@
 <div class="container px-5 px-sm-0">
  <div class="row">
   <div class="mt-5">
+      <% if @customer.errors.any? %>
+      <%= @customer.errors.count %>件のエラーが発生しました。:
+      <ul>
+       <% @customer.errors.full_messages.each do |message| %>
+       <li><%= message %></li>
+       <% end %>
+      </ul>
+      <% end %>
+    </div>
+ </div>
+ 
+ <div class="row">
+  <div class="mt-5">
    <h2><span class="bg-secondary">会員情報編集</span></h2>
   </div>
  </div>
