@@ -25,8 +25,6 @@
                 </tr>
             </thead>
             <tbody>
-            <!-- リファクタリングの為ブロックは{}を使って作成しています。 -->
-            <!-- ブロックはBookers等ではdoとendを使って作成していましたが波括弧でも作成できます。 -->
                 <% @genres.each { |genre| %>
                 <tr>
                     <td><%= genre.name %></td>
