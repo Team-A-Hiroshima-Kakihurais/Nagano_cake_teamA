@@ -1,6 +1,7 @@
 <div class='container'>
     <div class='row'>
         <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+            <%= render 'layouts/errors', obj: @genre %>
             <h2>ジャンル一覧・追加</h2>
             <%= form_with model:@genre, url: admin_genres_path, method: :post, local:true do |f| %>
                 <div class="form-group">
@@ -25,8 +26,6 @@
                 </tr>
             </thead>
             <tbody>
-            <!-- リファクタリングの為ブロックは{}を使って作成しています。 -->
-            <!-- ブロックはBookers等ではdoとendを使って作成していましたが波括弧でも作成できます。 -->
                 <% @genres.each { |genre| %>
                 <tr>
                     <td><%= genre.name %></td>

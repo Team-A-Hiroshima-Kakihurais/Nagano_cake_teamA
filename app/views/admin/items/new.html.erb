@@ -1,6 +1,7 @@
 <div class='container'>
     <div class='row'>
         <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+          <%= render 'layouts/errors', obj: @item %>
             <h2>商品新規登録</h2>
             <%= form_with model:@item, url: admin_items_path, method: :post, local:true do |f| %>
               <div class="form-group">
@@ -16,7 +17,7 @@
               </div>
               <div class="form-group">
                 <%= f.label :genre %>
-                <%= f.collection_select :genre_id, Genre.all, :id, :name, {include_blank: '---'} %> <!-- このページを見て解決→https://qiita.com/takeda-no-nao/items/5b24f2caf371d6e310f3 -->
+                <%= f.collection_select :genre_id, Genre.all, :id, :name, {include_blank: '---'} %>
               </div>
               <div class="form-group">
                 <%= f.label :price %>

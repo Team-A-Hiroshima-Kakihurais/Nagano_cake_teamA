@@ -1,4 +1,6 @@
 class Admin::ItemsController < ApplicationController
+    before_action :authenticate_admin!
+    
     def index
         @item = Item.page(params[:page])
     end
@@ -9,7 +11,7 @@ class Admin::ItemsController < ApplicationController
     
     def show
         @item = Item.find(params[:id])
-        @genre = Genre.find(params[:id])
+        @genre = @item.genre
     end
     
     def edit
@@ -17,15 +19,23 @@ class Admin::ItemsController < ApplicationController
     end
     
     def update
-        @item = Item.find(params[:id])
-        @item.update(admin_params)
-        redirect_to admin_item_path(@item)
+            @item = Item.find(params[:id])
+        if @item.update(admin_params)
+            redirect_to admin_item_path(@item)
+            flash[:notice] = "商品内容を更新しました！"
+        else
+            render :edit
+        end
     end
     
     def create
-        @item = Item.new(admin_params)
-        @item.save
-        redirect_back(fallback_location: admin_genres_path)
+            @item = Item.new(admin_params)
+        if @item.save
+            redirect_back(fallback_location: admin_genres_path)
+            flash[:notice] = "商品を追加しました！"
+        else
+            render :new
+        end
     end
     
   private

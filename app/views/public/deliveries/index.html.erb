@@ -1,4 +1,16 @@
 <div class="container px-5 px-sm-0">
+ <div class="row">
+  <div class="mt-5">
+      <% if @delivery.errors.any? %>
+      <%= @delivery.errors.count %>件のエラーが発生しました。:
+      <ul>
+       <% @delivery.errors.full_messages.each do |message| %>
+       <li><%= message %></li>
+       <% end %>
+      </ul>
+      <% end %>
+    </div>
+ </div>
  
  <div class="row">
   <div class="offset-md-4 mt-4">

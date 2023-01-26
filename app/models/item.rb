@@ -7,6 +7,12 @@ class Item < ApplicationRecord
   
   scope :serch_genre, ->(genre) {where(genre_id: genre)}
   
+  #バリデーション
+  validates :name, length: { minimum: 1, maximum: 100}
+  validates :introduction, length: { minimum: 1, maximum: 100}
+  validates :price, length: { minimum: 1, maximum: 100}
+  validates :image, presence:true
+  
   # 税込金額を求めるメソッド
   def add_total_payment
     tax = 1.08
