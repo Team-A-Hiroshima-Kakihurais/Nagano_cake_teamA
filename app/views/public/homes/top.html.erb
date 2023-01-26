@@ -29,7 +29,7 @@
     <table class="table table-borderless">
      <tr>
       <% @items.each do |item| %>
-       <td>
+       <td　class="home-img">
         <%= image_tag item.get_image(175), class:"card-image-top" %>
         <%= link_to item.name, item_path(item.id) %></br>
         ￥<%= item.price %>
