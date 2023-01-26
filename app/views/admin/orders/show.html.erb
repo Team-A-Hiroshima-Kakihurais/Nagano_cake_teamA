@@ -6,7 +6,7 @@
 <div class='container'>
     <div class='row'>
         <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0">
-            <p>購入者</p><p><%= @order.name%></p>
+            <p>購入者</p><p><%= link_to @order.name, admin_customer_path(@order.customer)%></p>
             <p>注文日</p><p><%= @order.created_at%></p>
             <p>配送先</p><p>〒<%= @order.post_code%> <%= @order.address%></p>
            <%= form_with model: @order, url: admin_order_path, method: :patch do |f| %>
