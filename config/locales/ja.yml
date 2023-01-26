@@ -4,8 +4,8 @@ ja:
       payment_method:
         credit_card: "クレジットカード"
         bank_transfer: "銀行振込"
-        cash_of_delivery: "銀行振込"
-      status: 
+        cash_of_delivery: "代金引換"
+      status:
         waiting_for_payment: "入金待ち"
         payment_confirmation: "入金確認"
         now_at_work: "製作中"
