@@ -9,6 +9,7 @@
             <p>購入者</p><p><%= link_to @order.name, admin_customer_path(@order.customer) %></p>
             <p>注文日</p><p><%= @order.created_at%></p>
             <p>配送先</p><p>〒<%= @order.post_code%> <%= @order.address%></p>
+            <p>支払方法</p><p><%= @order.payment_method_i18n %></p>
            <%= form_with model: @order, url: admin_order_path, method: :patch do |f| %>
            <%= f.select :status, Order.statuses_i18n.keys.map { |k| [I18n.t("enums.order.status.#{k}"), k] } %>
            <%= f.submit "更新", class: 'btn btn-success' %>
@@ -54,23 +55,3 @@
         </div>
     </div>
 </div>
-
-
-
-
- <!--<div class="col-md-3 mt-4 ml-4">
-      <table class='table table-bordered mt-3'>
-        <tr>
-      	  <th class="table-active">送料</th>
-      	  <th><#%= to_total_currency(@orders.postage) %></th>
-        </tr>
-        <tr>
-          <th class="table-active">商品合計</th>
-        	 <th><#%= to_total_currency(@total) %></th>
-        </tr>
-        <tr>
-          <th class="table-active">請求金額</th>
-        	<th><#%= to_total_currency(@orders.total_payment = @orders.postage + @total) %></th>
-        </tr>
-      </table>
-    </div> --!>
