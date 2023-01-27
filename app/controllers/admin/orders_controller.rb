@@ -8,9 +8,13 @@ class Admin::OrdersController < ApplicationController
   end
   
   def update
-    @order = Order.find(params[:id])
-    @order.update(order_params)
-    redirect_back(fallback_location: admin_order_path)
+      @order = Order.find(params[:id])
+      @order.update(order_params)
+   if @order.status == "payment_confirmation"
+      @order_item = @order.order_items
+      @order_item.update_all(making_status:'waiting_production')
+   end
+      redirect_back(fallback_location: admin_order_path)
   end
   
   private

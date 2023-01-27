@@ -30,12 +30,12 @@ class Admin::ItemsController < ApplicationController
     
     def create
             @item = Item.new(admin_params)
-        if @item.save
-            redirect_back(fallback_location: admin_genres_path)
+         if @item.save
+            redirect_to admin_item_path(@item)
             flash[:notice] = "商品を追加しました！"
-        else
+         else
             render :new
-        end
+         end
     end
     
   private
