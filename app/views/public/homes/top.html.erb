@@ -1,2 +1,50 @@
-<h1>Public::Homes#top</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
+<div class="container px-5 px-sm-0">
+ <div class="row">
+  
+  <div class="col-sm-2 mt-5">
+   <%= render 'public/tmp/genre_list', genres: @genres %>
+  </div>
+
+  <div class="col-md-8 offset-md-1 mt-5">
+   
+   <div class="row">
+    <div class="card text-light">
+     <%= image_tag 'default.jpg', size:"750x500" %>
+      <div class="card-img-overlay">
+       <h5 class="card-title">
+        <p class="text-center">
+         ようこそ、ながのCAKEへ!</br>
+         このサイトは、ケーキ販売のECサイトになります。</br>
+         会員でない方も商品の閲覧はできますが、</br>
+         購入には会員登録が必要になります。
+        </p>
+       </h5>
+      </div>
+    </div>
+   </div>
+   
+   <div class="row">
+    <div class="mt-5">
+    <h2>新着商品</h2>
+    <table class="table table-borderless">
+     <tr>
+      <% @items.each do |item| %>
+       <td>
+        <b><%= image_tag item.get_image(175), class:"card-image-top" %></b>
+        <%= link_to item.name, item_path(item.id) %></br>
+        ￥<%= item.price %>
+       </td>
+      <% end %>   
+     </tr>
+    </table>
+    </div>
+   </div>
+  
+  <p class="text-right">
+   <%= link_to "全ての商品", items_path %>
+  </p>
+
+ </div>
+</div>
+
+

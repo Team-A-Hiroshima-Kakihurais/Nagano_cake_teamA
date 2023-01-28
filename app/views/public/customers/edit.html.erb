@@ -1,2 +1,77 @@
-<h1>Public::Customers#edit</h1>
-<p>Find me in app/views/public/customers/edit.html.erb</p>
+<div class="container px-5 px-sm-0">
+ <div class="row">
+  <div class="mt-5">
+      <% if @customer.errors.any? %>
+      <%= @customer.errors.count %>件のエラーが発生しました。:
+      <ul>
+       <% @customer.errors.full_messages.each do |message| %>
+       <li><%= message %></li>
+       <% end %>
+      </ul>
+      <% end %>
+    </div>
+ </div>
+ 
+ <div class="row">
+  <div class="mt-5">
+   <h2><span class="bg-secondary">会員情報編集</span></h2>
+  </div>
+ </div>
+ 
+ <div class="row">
+  <div class="mt-5">
+   <%= form_with model: @customer, url: update_customer_path(current_customer), method: :patch do |f| %>
+    <table class="table table-borderless">
+     <tr>
+      <td>名前</td>
+      <td>
+       <%= f.text_field :last_name %>
+      </td>
+      <td>
+       <%= f.text_field :first_name %>
+      </td>
+     </tr>
+     <tr>
+      <td>フリガナ</td>
+      <td>
+       <%= f.text_field :last_name_kana %>
+      </td>
+      <td>
+       <%= f.text_field :first_name_kana %>
+      </td>
+     </tr>
+     <tr>
+      <td>メールアドレス</td>
+      <td>
+       <%= f.text_field :email, autofocus: true, autocomplete: "email" %>
+      </td>
+     </tr>
+     <tr>
+      <td>郵便番号(ハイフンなし)</td>
+      <td>
+       <%= f.text_field :post_code %>
+      </td>
+     </tr>
+     <tr>
+      <td>住所</td>
+      <td>
+       <%= f.text_field :address %>
+      </td>
+     </tr>
+     <tr>
+      <td>電話番号（ハイフンなし）</td>
+      <td>
+       <%= f.text_field :phone_number %>
+      </td>
+     </tr>
+     <tr>
+      <td></td>
+      <td><%= f.submit "編集内容を保存", class: 'btn btn-success btn-sm' %></td>
+      <td></td>
+      <td><%= link_to "退会する",  unsubscribe_path, class: 'btn btn-sm btn-danger' %></td>
+     </tr>
+    </table>
+   <% end %>
+  </div>
+ </div>
+</div>

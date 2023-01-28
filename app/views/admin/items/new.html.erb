@@ -1,20 +1,38 @@
 <div class='container'>
     <div class='row'>
         <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+          <%= render 'layouts/errors', obj: @item %>
             <h2>商品新規登録</h2>
-            <!-- <#%= form_with model:item,local:true do |f| %> 
+            <%= form_with model:@item, url: admin_items_path, method: :post, local:true do |f| %>
               <div class="form-group">
-                <#%= f.label :name %>
-                <#%= f.text_field :name, class: 'form-control book_title' %>
+                <%= f.file_field :image, accept:"image/*" %>
               </div>
               <div class="form-group">
-                <#%= f.label :introduction %>
-                <#%= f.text_area :introduction, class: 'form-control book_body' %>
+                <%= f.label :name %>
+                <%= f.text_field :name, class: 'form-control book_title' %>
               </div>
               <div class="form-group">
-                <#%= f.submit class: 'btn btn-success' %>
+                <%= f.label :introduction %>
+                <%= f.text_area :introduction, class: 'form-control book_body' %>
               </div>
-            <#% end %>-->
+              <div class="form-group">
+                <%= f.label :genre %>
+                <%= f.collection_select :genre_id, Genre.all, :id, :name, {include_blank: '---'} %>
+              </div>
+              <div class="form-group">
+                <%= f.label :price %>
+                <%= f.text_field :price, class:'form-control book_title' %><p>円</p>
+              </div>
+              <div class="form-group">
+                <%= f.label :is_active, '販売中', value: 1 %>
+                <%= f.radio_button :is_active, '1' %>
+                <%= f.label :is_active, '販売停止中', value: 0 %>
+                <%= f.radio_button :is_active, '0' %>
+              </div>
+              <div class="form-group">
+                <%= f.submit class: 'btn btn-success' %>
+              </div>
+            <% end %>
         </div>
     </div>
 </div>

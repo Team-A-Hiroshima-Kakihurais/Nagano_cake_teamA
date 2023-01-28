@@ -1,0 +1,6 @@
+<%= form_with model:cart do |f| %>
+    <%= f.select :amount, [*1..10],{include_blank: '個数選択'},
+    {class: "w-50 d-inline form-control needs-validation", required: true} %>
+    <%= f.hidden_field :item_id, :value => item.id %>
+    <%= f.submit "#{add_submit_cart}", class: "ml-2 btn btn-success"%>
+<% end %>

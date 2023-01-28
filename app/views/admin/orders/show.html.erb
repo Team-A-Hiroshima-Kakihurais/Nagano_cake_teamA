@@ -1,0 +1,57 @@
+<div class='container'>
+    <div class='row'>
+            <h2>注文履歴詳細</h2>
+    </div>
+</div>
+<div class='container'>
+    <div class='row'>
+        <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0">
+            <p>購入者</p><p><%= link_to @order.name, admin_customer_path(@order.customer) %></p>
+            <p>注文日</p><p><%= @order.created_at%></p>
+            <p>配送先</p><p>〒<%= @order.post_code%> <%= @order.address%></p>
+            <p>支払方法</p><p><%= @order.payment_method_i18n %></p>
+           <%= form_with model: @order, url: admin_order_path, method: :patch do |f| %>
+           <%= f.select :status, Order.statuses_i18n.keys.map { |k| [I18n.t("enums.order.status.#{k}"), k] } %>
+           <%= f.submit "更新", class: 'btn btn-success' %>
+           <% end %>
+        </div>
+                 <table class="table table-hover table-inverse">
+               <thead>
+                   <tr>
+                       <th>商品名</th>
+                       <th>単価（税込）</th>
+                       <th>数量</th>
+                       <th>小計</th>
+                       <th>製作ステータス</th>
+                       <th></th>
+                   </tr>
+               </thead>
+               <tbody>
+                   <% @order_item.each { |order_item| %>
+                   <% @total +=  order_item.add_total_payment_all  %>
+                   <tr>
+                       <td><%= order_item.item.name %></td>
+                       <td><%= order_item.price %></td>
+                       <td><%= order_item.amount %></td>
+                       <td><%= order_item.price*order_item.amount %>円</td>
+                       <%= form_with model: order_item, url: admin_order_item_path(order_item.id), method: :patch do |f| %>
+                       <td><%= f.select :making_status, OrderItem.making_statuses_i18n.keys.map { |k| [I18n.t("enums.order_item.making_status.#{k}"), k] } %></td>
+                       <td><%= f.submit "更新", class: 'btn btn-success' %></td>
+                       <% end %>
+                   </tr>
+                  <% } %>
+               </tbody>
+           </table>
+    </div>
+</div>
+<div class='container'>
+    <div class='row'>
+        <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0">
+        <strong>商品合計</strong>　<%= @total %>円
+        <br>
+        <strong>送料</strong>　<%= @order.postage %>円
+        <br>
+        <strong>請求金額合計</strong>　<%= @order.total_payment %>円
+        </div>
+    </div>
+</div>

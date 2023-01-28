@@ -1,0 +1,76 @@
+<div class="container mt-4">
+      <h3>注文履歴詳細</h3>
+  <div class="row">
+    <div class="col-md-7 mt-3">
+      <h5>注文詳細</h5>
+      <table class='table table-bordered table-hover'>
+        <tr>
+      	  <th class="table-active">注文日</th>
+      	  <th><%= @order.created_at.strftime('%Y/%m/%d') %></th>
+        </tr>
+        <tr>
+      	  <th class="table-active">配送先</th>
+      	  <th>
+      	    <%= @order.post_code %>
+            <%= @order.address %>
+            <%= @order.name %>
+          </th>
+        </tr>
+        <tr>
+      	  <th class="table-active">支払い方法</th>
+      	  <th><%= @order.payment_method_i18n %></th>
+        </tr>
+        <th class="table-active">ステーテス</th>
+      	  <th><%= @order.status_i18n %></th>
+        </tr>
+      </table>
+    </div>
+    <div class="col-md-3 mt-3">
+      <h5>注文詳細</h5>
+      <table class='table table-bordered table-hover'>
+        <tr>
+      	  <th class="table-active">商品合計</th>
+      	  <th><%= (@order.total_payment - @order.postage).to_s(:delimited) %></th>
+        </tr>
+        <tr>
+      	  <th class="table-active">配送料</th>
+      	  <th><%= @order.postage.to_s(:delimited) %></th>
+        </tr>
+        <tr>
+      	  <th class="table-active">ご請求金額</th>
+      	  <th><%= @order.total_payment.to_s(:delimited) %></th>
+        </tr>
+      </table>
+    </div>
+    <div class="col-md-10">
+      <h5>注文詳細</h5>
+      <table class="table table-hover table-bordered">
+      <thead class="thead-dark">
+          <tr>
+            <th>商品名</th>
+            <th>単価(税込)</th>
+            <th>数量</th>
+            <th>小計</th>
+          </tr>
+        </thead>
+        <tbody>
+            <% @order.order_items.each do |order_item| %>
+          <tr>
+            <td class="align-middle py-2">
+              <%= image_tag order_item.item.get_image(80) %>
+              <%= order_item.item.name %>
+            </td>
+            <td class="align-middle">
+              <%= order_item.add_total_payment.to_s(:delimited) %>
+            </td>
+            <td class="align-middle"><%= order_item.amount %></td>
+            <td class="align-middle">
+              <%= order_item.add_total_payment_all.to_s(:delimited) %>
+            </td>
+          </tr>
+            <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
